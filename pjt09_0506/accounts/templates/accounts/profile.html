@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ person.username }}의 프로필 페이지</h1>
+  {% with followings=person.followings.all followers=person.followers.all %}
+    <div>
+      <div>
+        팔로잉 : <div id='followings'>{{ followings|length }}</div> / 팔로워 : <div id='followers'>{{ followers|length }}</div>
+      </div>
+      {% if request.user != person %}
+        <div>
+          <form action="{% url 'accounts:follow' person.pk %}" method="POST" id='follow-form' account-id = "{{ person.pk }}">
+            {% csrf_token %}
+            {% if request.user in followers %}
+              <button id="followBtn">언팔로우</button>
+            {% else %}
+              <button id="followBtn">팔로우</button>
+            {% endif %}
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  {% endwith %}
+{% endblock %}
+
+{% comment %} JS {% endcomment %}
+{% block script %}
+<script>
+  const followingCount = document.querySelector('#followings')
+  const followerCount = document.querySelector('#followers')
+  
+  const form = document.querySelector('#follow-form')
+  
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault()
+    
+    const id = form.getAttribute('account-id')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/accounts/${id}/follow/`,
+      headers: {'X-CSRFToken': csrftoken},
+    })
+    .then(function(response) {
+      const followingCount = document.querySelector('#followings')
+      followingCount.innerText = response.data.followingcount
+      const followerCount = document.querySelector('#followers')
+      followerCount.innerText = response.data.followercount
+
+      const followerButton = document.querySelector('#followBtn')
+      if (response.data.followerd){
+        followerButton.innerText = '언팔로우'
+      } else {
+        followerButton.innerText = '팔로우'
+      }
+      })
+  })
+</script>
+{% endblock %}
+
+
+

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="fs-bold">NEW</h1><hr>
+<form action="{% url 'movies:create' %}" method="POST">
+  {% csrf_token %}
+  <label for="title">TITLE </label>
+  <input type="text" id="title" name="title">
+  <br>
+
+  <label for="audience">AUDIENCE </label>
+  <input type="text" id="audience" name="audience">
+  <br>
+
+  <label for="release_date">RELEASE_DATE </label>
+  <input type="date" id="release_date" name="release_date" value="연도-월-일" min="1900-02-20" max="2022-01-01">
+  <br>
+
+  <label for="genre">GENRE </label>
+  <select name="genre" id="genre">
+    <option value="코미디">코미디</option>
+    <option value="액션">액션</option>
+    <option value="호러">호러</option>
+    <option value="SF">SF</option>
+    <option value="뮤지컬">뮤지컬</option>
+    <option value="로맨틱">로맨틱</option>
+  </select>
+  <br>
+
+  <label for="score">SCORE </label>
+  <input type="float" id="score" name="score">
+  <br>
+
+  <label for="poster_url">POSTER_URL </label>
+  <input type="text" id="poster_url" name="poster_url">
+  <br>
+
+  <label for="description">DESCRIPTION </label>
+  <textarea name="description" id="description" cols="20" rows="5"></textarea>
+  <br>
+
+  <input type="submit" value="submit">
+  <hr>
+</form>
+
+<a href="{% url 'movies:index' %}">BACK</a>
+{% endblock content %}

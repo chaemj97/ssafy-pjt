@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class='fs-bold'>DETAIL</h1><hr>
+<img src="{{ movies.poster_url }}" width="300px" alt="영화 포스터"><br>
+{{ movies.title }}<br>
+{{ movies.audience }}<br>
+{{ movies.release_date }}<br>
+{{ movies.genre }}<br>
+{{ movies.score }}<br>
+{{ movies.description}}<br>
+<a href="{% url 'movies:edit' movies.pk%}">EDIT</a>
+<a href="{% url 'movies:delete' movies.pk %}">DELETE</a><br>
+<a href="{% url 'movies:index' %}">BACK</a>
+{% endblock content %}

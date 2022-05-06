@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="fs-bold">NEW</h1><hr>
+<form action="{% url 'movies:update' movies.pk %}" method="POST">
+  {% csrf_token %}
+  <label for="title">TITLE </label>
+  <input type="text" id="title" name="title" value={{ movies.title }}>
+  <br>
+
+  <label for="audience">AUDIENCE </label>
+  <input type="text" id="audience" name="audience" value={{ movies.audience }}>
+  <br>
+
+  <label for="release_date">RELEASE_DATE </label>
+  <input type="date" id="release_date" name="release_date" value="{{ movies.release_date|date:'Y-m-d' }}" min="1900-02-20" max="2022-01-01">
+  <br>
+
+  <label for="genre">GENRE </label>
+  <select name="genre" id="genre">
+    <option value="코미디" {% if movies.genre == "코미디" %} selected="selected" {% endif %} >코미디</option>
+    <option value="액션" {% if movies.genre == "액션" %} selected="selected" {% endif %} >액션</option>
+    <option value="호러" {% if movies.genre == "호러" %} selected="selected" {% endif %} >호러</option>
+    <option value="SF" {% if movies.genre == "SF" %} selected="selected" {% endif %} >SF</option>
+    <option value="뮤지컬" {% if movies.genre == "뮤지컬" %} selected="selected" {% endif %} >뮤지컬</option>
+    <option value="로맨틱" {% if movies.genre == "로맨틱" %} selected="selected" {% endif %} >로맨틱</option>
+  </select>
+  <br>
+
+  <label for="score">SCORE </label>
+  <input type="float" id="score" name="score" value="{{ movies.score }}">
+  <br>
+
+  <label for="poster_url">POSTER_URL </label>
+  <input type="text" id="poster_url" name="poster_url" value={{ movies.poster_url }}>
+  <br>
+
+  <label for="description">DESCRIPTION </label>
+  <textarea name="description" id="description" cols="20" rows="5" >{{ movies.description }}</textarea>
+  <br>
+
+  <input type="reset" value="reset">
+  <input type="submit" value="submit">
+  <hr>
+</form>
+
+<a href="{% url 'movies:index' %}">BACK</a>
+{% endblock content %}
