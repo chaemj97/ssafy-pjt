@@ -15,9 +15,12 @@ export default new Vuex.Store({
     CREATE_LIST : function(state,listItem){
       state.lists.push(listItem)
     },
-
-
-    LOAD_MOVIES(state) {
+    LOAD_MOVIES(state, movielist) {
+      state.movies = movielist
+    },
+  },
+  actions: {
+    load_movies(context) {
       const params = {
         'api_key' : '44cbb73b3c3a4210576ca36e0b33784e',
         'language' : 'ko',
@@ -30,16 +33,11 @@ export default new Vuex.Store({
       })
       .then(response => { 
         // console.log(response.data)
-        state.movies = response.data.results
+        context.commit('LOAD_MOVIES', response.data.results)
       })
       .catch(error => {
         console.log(error)
       })
-    }
-  },
-  actions: {
-    load_movies(context) {
-      context.commit('LOAD_MOVIES')
     },
     createList : function({commit},ListItem){
       commit('CREATE_LIST',ListItem)

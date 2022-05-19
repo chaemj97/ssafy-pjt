@@ -3,16 +3,17 @@
   <h1>DETAIL</h1>
   <hr>
   
-  {{ movie.title }}<br>
-  {{ movie.release_date }}<br>
-  {{ movie.popularity }}<br>
-  {{ movie.vote_count }}<br>
-  {{ movie.vote_average }}<br>
-  {{ movie.overview }}<br> 
-  {{ movie.poster_path }}<br>
-  {{ movie.genres }}<br>
-  <br>
-  
+  <img src="{{ movie.poster_path }}"><br>
+  <p>Title : {{ movie.title }}</p>
+  <p>Release_date : {{ movie.release_date }}</p>
+  <p>Popularity : {{ movie.popularity }}</p>
+  <p>Vote_count : {{ movie.vote_count }}</p>
+  <p>Vote_average : {{ movie.vote_average }}</p>
+  <p>Overview : {{ movie.overview }}</p>
+  <p>Genre : 
+    {% for genre in movie.genres.all %}
+      {{ genre.name }}
+    {% endfor %}</p>
   <a href="{% url 'movies:index' %}">BACK</a>
   <hr>
   

@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import redirect, render,get_object_or_404
 from django.views.decorators.http import require_safe
 from django.core.paginator import Paginator
 
@@ -46,4 +46,12 @@ def detail(request, movie_pk):
 
 @require_safe
 def recommended(request):
-    pass
+    if request.user.is_authenticated:
+        favorite_movies = Movie.objects.all().order_by('-vote_average')[:10]
+        # serializer1 = MovieSerialzier(favorite_movies, many=True)
+        context = {
+            # 'serializer1' : serializer1
+            'movies' : favorite_movies,
+        }
+        return render(request, 'movies/recommended.html', context)
+    return redirect('accounts:login')

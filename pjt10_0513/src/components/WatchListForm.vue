@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="p-3 mb-3 bg-info bg-opacity-50">
     <h1>My Movie List</h1>
     <input
     v-model.trim="ListTitle" type="text">
-    <button @click="createList">Add</button>
+    <button class="btn btn-primary" @click="createList">Add</button>
   </div>
 </template>
 

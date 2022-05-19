@@ -36,10 +36,10 @@ INSTALLED_APPS = [
     'community',
     'movies',
     # 3rd party
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
     'bootstrap5',
     'rest_framework',
     # Native
@@ -49,21 +49,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
 ]
-# django.contrib.sites 사용시 반드시 SITE_ID 설정 필요
-SITE_ID = 1
+# # django.contrib.sites 사용시 반드시 SITE_ID 설정 필요
+# SITE_ID = 1
 
-# social login 바로 넘어가기
-SOCIALACCOUNT_LOGIN_ON_GET = True
+# # social login 바로 넘어가기
+# SOCIALACCOUNT_LOGIN_ON_GET = True
 
-AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
+# AUTHENTICATION_BACKENDS = [
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]
 
 
 MIDDLEWARE = [

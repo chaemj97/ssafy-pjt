@@ -1,10 +1,14 @@
 <template>
-  <div class="home">
-    <movie-card
-      v-for="movie in movies"
-      :key="movie.title"
-      :movie="movie"></movie-card>
+  <div class="container">
+    <div class="home row">
+      <movie-card
+        v-for="movie in movies"
+        :key="movie.title"
+        :movie="movie"
+        class="col"></movie-card>
+    </div>
   </div>
+
 </template>
 
 <script>

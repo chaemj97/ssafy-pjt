@@ -1,10 +1,12 @@
 <template>
   <div class="random">
-    <button @click="randomMovie" >PICK</button>
-    <div class="card" style="width: 18rem;">
-      <img :src="poster_path" class="card-img-top" alt="Pick a MOVIE">
-      <div class="card-body">
-        <h5 class="card-title">{{title}}</h5>
+    <button class="btn btn-success" @click="randomMovie" >PICK</button>
+    <div class="d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <img :src="poster_path" class="card-img-top" alt="Pick a MOVIE">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+        </div>
       </div>
     </div>
   </div>
